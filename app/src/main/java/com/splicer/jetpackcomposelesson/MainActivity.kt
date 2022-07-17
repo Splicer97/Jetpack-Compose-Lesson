@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -30,9 +33,33 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircleItem()
+            LazyColumn(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
+//                items(count = 100) {
+//                    Text(
+//                        text = "Item $it",
+//                        fontSize = 30.sp,
+//                        modifier = Modifier.padding(vertical = 10.dp)
+//                    )
+//                }
+                itemsIndexed(
+                    listOf("start", "1", "center", "item1")
+                ) { _, item ->
+                    Text(
+                        text = item,
+                        fontSize = 30.sp,
+                        modifier = Modifier.padding(vertical = 10.dp)
+                    )
+
+                }
             }
+//            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//                CircleItem()
+//            }
 //            Column(modifier =  Modifier.verticalScroll(rememberScrollState())) {
 //                ListItem("Zac Efron", "Actor")
 //                ListItem("Zac Efron", "Actor")
