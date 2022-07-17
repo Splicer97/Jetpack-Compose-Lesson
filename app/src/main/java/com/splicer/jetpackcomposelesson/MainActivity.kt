@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
@@ -28,35 +29,53 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.splicer.jetpackcomposelesson.ui.theme.ItemRowModel
+import com.splicer.jetpackcomposelesson.ui.theme.MyRow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LazyColumn(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-            ) {
-//                items(count = 100) {
-//                    Text(
-//                        text = "Item $it",
-//                        fontSize = 30.sp,
-//                        modifier = Modifier.padding(vertical = 10.dp)
-//                    )
-//                }
+            LazyRow(modifier = Modifier.fillMaxWidth().background(White)) {
                 itemsIndexed(
-                    listOf("start", "1", "center", "item1")
+                    listOf(
+                        ItemRowModel(R.drawable.image, "Image"),
+                        ItemRowModel(R.drawable.image, "Image"),
+                        ItemRowModel(R.drawable.image, "Image"),
+                        ItemRowModel(R.drawable.image, "Image"),
+                        ItemRowModel(R.drawable.image, "Image"),
+                        ItemRowModel(R.drawable.image, "Image")
+                    )
                 ) { _, item ->
-                    Text(
-                        text = item,
-                        fontSize = 30.sp,
-                        modifier = Modifier.padding(vertical = 10.dp)
+                    MyRow(
+                        item = item,
                     )
 
                 }
             }
+//            LazyColumn(
+//                horizontalAlignment = Alignment.CenterHorizontally,
+//                modifier = Modifier
+//                    .fillMaxSize()
+//            ) {
+////                items(count = 100) {
+////                    Text(
+////                        text = "Item $it",
+////                        fontSize = 30.sp,
+////                        modifier = Modifier.padding(vertical = 10.dp)
+////                    )
+////                }
+//                itemsIndexed(
+//                    listOf("start", "1", "center", "item1")
+//                ) { _, item ->
+//                    Text(
+//                        text = item,
+//                        fontSize = 30.sp,
+//                        modifier = Modifier.padding(vertical = 10.dp)
+//                    )
+//
+//                }
+//            }
 //            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
 //                CircleItem()
 //            }
